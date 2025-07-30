@@ -23,10 +23,24 @@ scroll_bottom = function() {
   }
 }
 
+// submit_message = function() {
+//   $('#message_body').on('keydown', function(e) {
+//     if (e.keyCode == 13) {
+//       $('button').click();
+//       e.target
+//     }
+//   })
+// }
+
 $(document).on('turbolinks:load', function() {
   $('.ui.dropdown').dropdown();
   $('.message .close').on('click', function() {
     $(this).closest('.message').transition('fade');
   });
+  // Wait for AJAX success
+  $('.form').on('ajax:success', function() {
+    $('#message_body').val("");
+  })
+  // submit_message();
   scroll_bottom();
 })
