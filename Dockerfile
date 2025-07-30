@@ -16,7 +16,10 @@ RUN bundle install
 COPY . .
 RUN bundle exec rake assets:precompile
 
+HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3000/up || exit 1
+
 # Expose port
 EXPOSE 3000
 
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
