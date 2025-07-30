@@ -9,6 +9,7 @@ WORKDIR /app
 # Copy Gemfiles and install gems
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.3.22
+ENV BUNDLE_FORCE_RUBY_PLATFORM=1
 RUN bundle install
 
 # Copy app source
