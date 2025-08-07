@@ -21,5 +21,54 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  primary:
+    url: <%= ENV["DATABASE_URL"] %>
+  cable:
+    url: <%= ENV["DATABASE_URL"] %>
+  cache:
+    url: <%= ENV["DATABASE_URL"] %>
+  queue:
+    url: <%= ENV["DATABASE_URL"] %>
+
+  # primary:
+  #   <<: *default
+  #   adapter: postgresql
+  #   encoding: unicode
+  #   host: <%= ENV["PGHOST"] %>
+  #   port: <%= ENV["PGPORT"] || 5432 %>
+  #   username: <%= ENV["PGUSER"] %>
+  #   password: <%= ENV["PGPASSWORD"] %>
+  #   database: <%= ENV["PGDATABASE"] %>
+
+  # cache:
+  #   <<: *default
+  #   adapter: postgresql
+  #   encoding: unicode
+  #   host: <%= ENV["PGHOST"] %>
+  #   port: <%= ENV["PGPORT"] || 5432 %>
+  #   username: <%= ENV["PGUSER"] %>
+  #   password: <%= ENV["PGPASSWORD"] %>
+  #   database: <%= ENV["PGDATABASE"] %>
+  #   migrations_paths: db/cache_migrate
+
+  # queue:
+  #   <<: *default
+  #   adapter: postgresql
+  #   encoding: unicode
+  #   host: <%= ENV["PGHOST"] %>
+  #   port: <%= ENV["PGPORT"] || 5432 %>
+  #   username: <%= ENV["PGUSER"] %>
+  #   password: <%= ENV["PGPASSWORD"] %>
+  #   database: <%= ENV["PGDATABASE"] %>
+  #   migrations_paths: db/queue_migrate
+
+  # cable:
+  #   <<: *default
+  #   adapter: postgresql
+  #   encoding: unicode
+  #   host: <%= ENV["PGHOST"] %>
+  #   port: <%= ENV["PGPORT"] || 5432 %>
+  #   username: <%= ENV["PGUSER"] %>
+  #   password: <%= ENV["PGPASSWORD"] %>
+  #   database: <%= ENV["PGDATABASE"] %>
+  #   migrations_paths: db/cable_migrate
