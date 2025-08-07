@@ -1,7 +1,8 @@
 FROM ruby:2.6
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs yarn sqlite3 libsqlite3-dev libffi-dev
+RUN apt-get update -qq && apt-get install -y nodejs yarn sqlite3 libsqlite3-dev libffi-dev \
+  libjemalloc2 postgresql-client build-essential libpq-dev node-gyp pkg-config python
 
 # Set working directory
 WORKDIR /app
@@ -22,4 +23,4 @@ HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=3 \
 # Expose port
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
